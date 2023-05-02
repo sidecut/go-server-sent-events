@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const progressBar = document.getElementById("progressBar");
     progressBar && (progressBar.style.width = `${5 * progressPercentage}%`);
+    const progress = document.getElementById("progress");
+    progress && (progress.innerHTML = `${5 * progressPercentage}%`);
   });
 
   eventSource.addEventListener("onComplete", (event) => {
