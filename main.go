@@ -20,10 +20,10 @@ func main() {
 		c.Writer.Header().Set("Cache-Control", "no-cache")
 		c.Writer.Flush()
 
+		time.Sleep(time.Second)
+
 		const max = 20
 		for i := 0; i < max; i++ {
-			time.Sleep(time.Second / 5)
-
 			c.Writer.WriteString(fmt.Sprintf("id: %d\n", i))
 			c.Writer.WriteString("event: onProgress\n")
 			data, _ := json.Marshal(gin.H{
@@ -32,6 +32,8 @@ func main() {
 			c.Writer.WriteString(fmt.Sprintf("data: %s\n", data))
 			c.Writer.WriteString("\n")
 			c.Writer.Flush()
+
+			time.Sleep(time.Second / 5)
 		}
 
 		c.Writer.WriteString(fmt.Sprintf("id: %d\n", max))
